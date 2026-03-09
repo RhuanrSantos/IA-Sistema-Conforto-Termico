@@ -37,7 +37,6 @@ def save_csv(df: pd.DataFrame, path: str):
         df: DataFrame a salvar
         path: caminho de destino
     """
-    # cria a pasta de destino se não existir
     os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, index=False, encoding='utf-8-sig')
     print(f"Arquivo salvo em: {os.path.abspath(path)}")
