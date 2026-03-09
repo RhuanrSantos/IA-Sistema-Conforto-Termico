@@ -3,7 +3,6 @@ import pandas as pd
 from src.rules import DEFAULT_RULES, classify_row
 
 
-# cores para cada categoria de classificação
 COLORS = {
     'Muito Frio':                    'blue',
     'Muito Quente':                  'red',
@@ -28,7 +27,6 @@ def plot_dataset(df: pd.DataFrame, rules=None, save_path: str = None):
     """
     rules = rules or DEFAULT_RULES
 
-    # aplicar classificação
     labels = df.apply(lambda row: classify_row(row, rules), axis=1)
 
     plt.figure(figsize=(10, 7))
@@ -46,7 +44,6 @@ def plot_dataset(df: pd.DataFrame, rules=None, save_path: str = None):
             linewidths=0.5
         )
 
-    # linhas de referência das regiões
     plt.axvline(x=5,  color='blue',   linestyle='--', linewidth=0.8, alpha=0.5, label='Limite Muito Frio (5°C)')
     plt.axvline(x=35, color='red',    linestyle='--', linewidth=0.8, alpha=0.5, label='Limite Muito Quente (35°C)')
     plt.axhline(y=30, color='orange', linestyle='--', linewidth=0.8, alpha=0.5, label='Limite Muito Seco (30%)')
@@ -67,7 +64,6 @@ def plot_dataset(df: pd.DataFrame, rules=None, save_path: str = None):
 
 
 if __name__ == '__main__':
-    # exemplo de uso direto
     df = pd.DataFrame({
         'temperatura': [3, 5, 15, 22, 23, 25, 28, 29, 38, 40, 18],
         'umidade':     [50, 50, 50, 45, 50, 85, 85, 50, 60, 60, 20],
