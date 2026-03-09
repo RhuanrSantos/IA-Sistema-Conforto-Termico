@@ -35,7 +35,6 @@ def main():
 
     args = parser.parse_args()
 
-    # --- carregar dados ---
     if args.sample:
         print("Usando dataset de exemplo...")
         df = sample_dataframe()
@@ -45,19 +44,16 @@ def main():
         print(f"Carregando dados de: {args.input}")
         df = load_csv(args.input)
 
-    # --- aplicar classificação ---
     print("Aplicando regras de classificação...")
     df['classificacao'] = df.apply(
         lambda row: classify_row(row, DEFAULT_RULES), axis=1
     )
 
-    # --- exibir resultado no terminal ---
     print("\nResultado da Classificação:")
     print("-" * 45)
     print(df.to_string(index=True))
     print("-" * 45)
 
-    # --- salvar CSV de saída ---
     save_csv(df, args.output)
     print(f"\nProcessamento concluído! {len(df)} registros classificados.")
 
