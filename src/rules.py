@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from typing import Callable, Dict, List
 import logging
 
-# configuração do logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
@@ -48,10 +47,8 @@ def classify_row(row: Dict, rules: List[Rule], default: str = 'Indefinido') -> s
     return default
 
 
-# Lista de regras padrão baseadas no diagrama de conforto térmico
 DEFAULT_RULES: List[Rule] = [
 
-    # --- EXTREMOS DE TEMPERATURA (prioridade máxima) ---
     Rule(
         name='Muito Frio',
         condition=lambda r: float(r['temperatura']) <= 5,
@@ -65,7 +62,6 @@ DEFAULT_RULES: List[Rule] = [
         priority=100
     ),
 
-    # --- EXTREMOS DE UMIDADE ---
     Rule(
         name='Muito Seco',
         condition=lambda r: float(r['umidade']) <= 30,
@@ -79,7 +75,6 @@ DEFAULT_RULES: List[Rule] = [
         priority=90
     ),
 
-    # --- REGIÃO INTERMEDIÁRIA ---
     Rule(
         name='Precisa de Sol',
         condition=lambda r: 10 <= float(r['temperatura']) < 20 and 30 < float(r['umidade']) < 80,
@@ -99,7 +94,6 @@ DEFAULT_RULES: List[Rule] = [
         priority=30
     ),
 
-    # --- FALLBACK: zona adaptativa central ---
     Rule(
         name='Zona Adaptativa',
         condition=lambda r: 10 <= float(r['temperatura']) <= 32 and 30 < float(r['umidade']) < 80,
