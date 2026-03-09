@@ -1,0 +1,26 @@
+# ambiente virtual
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# outputs gerados
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# variáveis de ambiente
+.env
